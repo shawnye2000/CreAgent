@@ -19,5 +19,5 @@ python simulator.py
 To change the configure setting, you can enter the `LLaMA-Factory/src/llamafactory/config/config.yaml` file and edit. 
 
 # YouTube Dataset
-You can fetch the YouTube dataset through [Google Drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=drive_link). 
+You can fetch the YouTube dataset through [Google Drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing). 
 
