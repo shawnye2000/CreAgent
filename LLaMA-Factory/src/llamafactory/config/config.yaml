@@ -1,20 +1,20 @@
 # name of LLM model, 'custom' for custom model
 llm: custom
 # path for item data
-item_save_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/1012_saved_item_FairAgent_ranking_MF_TFROM_start_step0_2024_repeat_1.json
+item_save_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/1012_saved_item_FairAgent_ranking_MF_TFROM_start_step0_2024_repeat_1.json
 # path for user data
-user_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/users.json   #data/small_user.csv    #user_df.csv
+user_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/users.json   #data/small_user.csv    #user_df.csv
 # path for provider data
-provider_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/providers.json     #data/provider_profile.json
+provider_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/providers.json     #data/provider_profile.json
 # path for save interaction records
-profile_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/provider_profile.json
+profile_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/provider_profile.json
 # path for save interaction records
-interaction_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/data/1012_interaction_FairAgent_ranking_MF_reranking_TFROM_recency_10_2024_repeat_1.csv
+interaction_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/data/1012_interaction_FairAgent_ranking_MF_reranking_TFROM_recency_10_2024_repeat_1.csv
 # directory name for faiss index
-ckpt_path: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/data/ckpt
-index_name: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/data/faiss_index
+ckpt_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/data/ckpt
+index_name: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/data/faiss_index
 # simulator directory name for saving and restoring
-simulator_dir: /home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/data/data/simulator
+simulator_dir: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/data/simulator
 # simulator restoring name
 simulator_restore_file_name:
 # random seed
