@@ -1,8 +1,11 @@
+# YouTube Dataset
+To download the dataset, please refer to [google drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing).
+
 # CreAgent
 This contains the codes of the simulation platform  equipped with CreAgent, which is used for long-term recommender system evaluation.
 
 
-First, collected the dataset and put them into `LLaMA-Factory/data` by creating a new folder, e.g., `LLaMA-Factory/data/youtube`. The dataset should contain both creator and user.
+First, collected the dataset and put them into `LLaMA-Factory/data` by creating a new folder, e.g., `LLaMA-Factory/data/youtube`. The dataset should contain both creator and user. You can directly use the **Small YouTube Dataset** provided in the [google drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing).
 
 The dataset format of provider is 
 ```
