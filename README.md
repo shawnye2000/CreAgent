@@ -1,70 +1,33 @@
-# YouTube Dataset
-To download the dataset, please refer to [google drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing).
+# CreAgent and Simulation platform 
 
-# CreAgent
-This contains the codes of the simulation platform  equipped with CreAgent, which is used for long-term recommender system evaluation.
+This repo contains the codes of the simulation platform equipped with CreAgent, which is used for long-term recommender system evaluation.
+proposed by the SIGIR 2025 paper "LLM-Empowered Creator Simulation for Long-Term Evaluation of Recommender Systems Under Information Asymmetry"
 
 
-First, collected the dataset and put them into `LLaMA-Factory/data` by creating a new folder, e.g., `LLaMA-Factory/data/youtube`. The dataset should contain both creator and user. You can directly use the **Small YouTube Dataset** provided in the [google drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing).
-
-The dataset format of provider is 
+# Environment 
+Clone the github repo and 
 ```
-[
-    {
-        "channel_name": "xxx",
-        "history_categories": {
-            "Entertainment": 98,
-            "Film & Animation": 1,
-            "Education": 1
-        },
-        "creation_frequency": xx,
-        "history_items": []
-      },
-     ...
-]
+git clone https://github.com/shawnye2000/CreAgent.git
+cd CreAgent
+pip install -r requirements.txt
 ```
 
+Then,  download the dataset from [google drive](https://drive.google.com/drive/folders/1PwNygSNd-L161x-wDmiwq78E0_VwzoMh?usp=sharing). Download the `users.json` and `provider.json` from `Small_YouTube` and put them into `dataset/youtube`. 
 
-The dataset format of user is 
-```
-[
-    {
-        "user_name": "xxx",
-        "interest": [
-            "People & Blogs",
-            "Entertainment",
-            "Film & Animation"
-        ],
-        "history": [
-            "SS1ac8mAhhE",
-            "KB8-cAU8kW4",
-            ...
-        ]
-        },
-        ...
-]
-```
 
-Second, please determine the setups of the simulation platform and modify the config file:
-
+Third, please determine the setups of the simulation platform and modify the config file:
 `
-cd LLaMA-Factory/src/llamafactory/config/config.yaml
+cd config/config.yaml
 `
 
-To run the simulator, please enter the llama-factory dictionary
-
-`
-cd LLaMA-Factory/src/llamafactory/simulator
-`
-
-Then, you can run the simulator
+Then, you can run the simulator environment
 
 `
 python simulator.py
 `
 
 
-To change the configure setting, you can enter the `LLaMA-Factory/src/llamafactory/config/config.yaml` file and edit. 
+To change the configure setting, you can enter the `config/config.yaml` file and edit. 
 
 
 
