@@ -1,5 +1,8 @@
 # name of LLM model, 'custom' for custom model
 llm: custom
+api_key: xxx
+api_base: xxx
+llm_name: xxx
 # path for item data
 item_save_path: /home/xxx/experiment/Agent4Fairness/LLaMA-Factory/data/youtube/1012_saved_item_FairAgent_ranking_MF_TFROM_start_step0_2024_repeat_1.json
 # path for user data
