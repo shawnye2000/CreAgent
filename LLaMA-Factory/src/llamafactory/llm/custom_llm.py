@@ -90,16 +90,15 @@ class CustomLLM(LLM):
             {"role": "user", "content": prompt},
         )
         # print(f'messages:{messages}')
-        openai_api_key = "EMPTY"
-        openai_api_base = "http://localhost:8000/v1"
+
 
         client = OpenAI(
-            api_key=openai_api_key,
-            base_url=openai_api_base,
+            api_key=self.config['api_key'],
+            base_url=self.config['api_base'],
         )
 
         chat_response = client.chat.completions.create(
-            model="llama3-8b",
+            model=self.config['llm_name'],
             messages=messages
         )
         chat_response = chat_response.choices[0].message.content
