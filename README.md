@@ -1,11 +1,11 @@
-# CreAgent and Simulation platform 
+# CreAgent
 
 This repo contains the codes of the simulation platform equipped with CreAgent, which is used for long-term recommender system evaluation.
 proposed by the SIGIR 2025 paper "**LLM-Empowered Creator Simulation for Long-Term Evaluation of Recommender Systems Under Information Asymmetry**"
 
 
 # Environment 
-Clone the github repo and 
+Clone the github repo and create the conda environment
 ```
 git clone https://github.com/shawnye2000/CreAgent.git
 cd CreAgent
