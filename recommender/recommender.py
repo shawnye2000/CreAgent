@@ -71,7 +71,7 @@ class Recommender:
             self.model = self.model.to(self.device)
 
         if config["reranking_model"]:
-            reranking_module = importlib.import_module("llamafactory.recommender.reranking_model")
+            reranking_module = importlib.import_module("recommender.reranking_model")
             self.reranking_model = getattr(reranking_module, config["reranking_model"])(
                 self.config['TopK'], self.config['tradeoff_para']
             )

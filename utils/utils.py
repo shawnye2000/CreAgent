@@ -415,8 +415,8 @@ def get_entropy(inters, data):
     return entropy
 
 
-def get_embedding_model():
-    model_name = '/home/xiaopeng_ye/LLMs/all-mpnet-base-v2'
+def get_embedding_model(emb_path):
+    model_name = emb_path
     model_kwargs = {'device': 'cpu'}
     embeddings_model = HuggingFaceEmbeddings(model_name=model_name, model_kwargs=model_kwargs)
     embeddings_size =  768 # 1536 #
@@ -494,42 +494,10 @@ def response_to_item(response, choose_genre):
             item_description = ''
     genre_list = get_item_categories()
     if item_genre not in genre_list:
-        # match_item_genre = find_first_match(item_genre, genre_list)
-        # if match_item_genre != None:
-        #     return item_name, match_item_genre,item_tags, item_description
-        # else:
         print(f'not match item_genre:{item_genre}')
-
-        # match_item_genre = find_most_similar_embedding(item_genre, genre_list)
-
         return item_name, choose_genre, item_tags, item_description
     else:
         return item_name, item_genre, item_tags, item_description
-
-
-
-
-    # 加载预训练的BERT模型和分词器
-
-
-def embed_text(text):
-    model_name = '/home/xiaopeng_ye/LLMs/bert-base-uncased'
-    tokenizer = BertTokenizer.from_pretrained(model_name)
-    model = BertModel.from_pretrained(model_name)
-    inputs = tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=512)
-    with torch.no_grad():
-        outputs = model(**inputs)
-    return outputs.last_hidden_state.mean(dim=1)
-
-def find_most_similar_embedding(target, strings_list):
-    target_embedding = embed_text(target)
-    embeddings = [embed_text(text) for text in strings_list]
-
-    # 计算余弦相似度
-    similarities = cosine_similarity(target_embedding, torch.cat(embeddings))
-    most_similar_index = similarities.argmax()
-
-    return strings_list[most_similar_index]
 
 
 def find_first_match(text, words_list):
@@ -592,12 +560,13 @@ def L2norm(array):
 
 def save_new_item_click_records(round_cnt, name, new_item_click, config):
     with open(
-            f'/home/xiaopeng_ye/experiment/Agent4Fairness/figures/prospect_theory/0929_DIN_{config["provider_decision_policy"]}_{config["reranking_model"]}_item_recency_{config["item_recency"]}_record.txt',
+            f'saves/log/0929_DIN_{config["provider_decision_policy"]}_{config["reranking_model"]}_item_recency_{config["item_recency"]}_record.txt',
             'a') as f:
         f.write(f'{round_cnt}\t{name}\t{new_item_click}\n')  # 追加内容，不会换行
+
 def save_action_records(round_cnt,name, new_item_click, exploit, config):
     with open(
-            f'/home/xiaopeng_ye/experiment/Agent4Fairness/figures/prospect_theory/0929_DIN_{config["provider_decision_policy"]}_{config["reranking_model"]}_item_recency_{config["item_recency"]}_record.txt',
+            f'saves/log/0929_DIN_{config["provider_decision_policy"]}_{config["reranking_model"]}_item_recency_{config["item_recency"]}_record.txt',
             'a') as f:
         if exploit == True:
             f.write(f'{round_cnt}\t{name}\t{new_item_click}\tEXPLOIT\n')  # 追加内容，不会换行

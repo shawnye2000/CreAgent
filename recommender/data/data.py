@@ -1,7 +1,6 @@
-import csv
+
 from langchain.vectorstores import FAISS
 from utils import utils
-import pandas as pd
 import json
 import numpy as np
 import random
@@ -79,7 +78,7 @@ class Data:
         Load faiss db from local if exists, otherwise create a new one.
 
         """
-        _, embeddings = utils.get_embedding_model()
+        _, embeddings = utils.get_embedding_model(self.config['embedding_model_path'])
         try:
             self.db = FAISS.load_local(index_name, embeddings)
             print("Load faiss db from local")

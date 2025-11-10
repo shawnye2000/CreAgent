@@ -4,28 +4,29 @@ api_base: http://localhost:8000/v1
 api_key: EMPTY
 model_name: xxx
 # path for item data
-item_save_path: xxx/data/youtube/1012_saved_item_FairAgent_ranking_MF_TFROM_start_step0_2024_repeat_1.json
+item_save_path: saves/item_saved.json
 # path for user data
-user_path: xxx/data/youtube/users.json   #data/small_user.csv    #user_df.csv
+user_path: data/youtube/users.json   #data/small_user.csv    #user_df.csv
 # path for provider data
-provider_path: xxx/data/youtube/providers.json     #data/provider_profile.json
+provider_path: data/youtube/providers.json     #data/provider_profile.json
 # path for save interaction records
-profile_path: xxx/data/youtube/provider_profile.json
+profile_path: data/youtube/provider_profile.json
 # path for save interaction records
-interaction_path: xxx/data/data/1012_interaction_FairAgent_ranking_MF_reranking_TFROM_recency_10_2024_repeat_1.csv
+interaction_path: saves/interaction.csv
 # directory name for faiss index
-ckpt_path: xxx/data/data/ckpt
-index_name: xxx/data/data/faiss_index
+ckpt_path: data/data/ckpt
+index_name: data/data/faiss_index
 # simulator directory name for saving and restoring
-simulator_dir: xxx/data/data/simulator
-# simulator restoring name
-simulator_restore_file_name:
+simulator_dir: data/data/simulator
+
+# embedding model path
+embedding_model_path: all-mpnet-base-v2
 # random seed
 seed: 2024  #  1. 1  2. 2024
 # recommender system model
 rec_model: MF  #Pop
 # re-ranking system model
-reranking_model: TFROM  #TFROM   #False  #P_MMF  #FairRec  #False    #MF
+reranking_model: None  #[TFROM, P_MMF, FairRec]
 tradeoff_para: 0.5 #100
 # train epoch number for recommender system model
 epoch_num: 60

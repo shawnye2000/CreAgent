@@ -436,7 +436,7 @@ class ProAgent(GenerativeAgent):
                             f"\nTo sticking to familiar genres, write: [EXPLOIT]:: <genre_name>. If so, give the specific genre name chosen from {known_cates}."
                           "\nPlease answer concisely and strictly follow the output rules."
                           )
-                    with open(f'/home/xiaopeng_ye/experiment/Agent4Fairness/figures/prospect_theory/DIN_{self.config["provider_decision_policy"]}_{self.config["reranking_model"]}_item_recency_{self.config["item_recency"]}_record.txt', 'a') as f:
+                    with open(f'saves/log/DIN_{self.config["provider_decision_policy"]}_{self.config["reranking_model"]}_item_recency_{self.config["item_recency"]}_record.txt', 'a') as f:
                         f.write( f'{round_cnt}\t{self.name}\t{new_item_click}\n')  # 追加内容，不会换行
                 else:
                     raise ValueError(f'Unvalid mode found:{self.mode}')
@@ -726,18 +726,6 @@ class ProAgent(GenerativeAgent):
         else:
             return self.active_prob
 
-    # def get_response_fromLLM(self, prompt, history, profile):
-    #     # tokenizer = AutoTokenizer.from_pretrained(
-    #     #     '/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct', trust_remote_code=True)
-    #     # model = AutoModelForCausalLM.from_pretrained(
-    #     #     '/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct',
-    #     #     torch_dtype=torch.float16,
-    #     #     device_map='auto',  # "sequential",
-    #     #     trust_remote_code=True
-    #     # )
-    #     # model.half()
-    #     # tokenizer.half()
-    #
     def generating(self, action, choice, choose_genre, analyze_history):
         recent_creation = self.get_recent_creation(category=choose_genre)
         prompt = (f"Based on the analysis, {action}"

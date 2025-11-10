@@ -54,23 +54,6 @@ class CustomLLM(LLM):
         # history: Optional[List[str]] = None,
         run_manager: Optional[CallbackManagerForLLMRun] = None,
     ) -> str:
-        # prompt_data = json.dumps(prompt, ensure_ascii=False)
-
-        # from accelerate import infer_auto_device_map
-        #
-        # device_map = infer_auto_device_map(my_model, max_memory={0: "10GiB", 1: "10GiB", "cpu": "30GiB"})
-
-        # model = AutoModelForCausalLM.from_pretrained(
-        #     '/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct',
-        #     torch_dtype=torch.float16,
-        #     device_map='auto',#"sequential",
-        #     trust_remote_code=True
-        # )
-        # model.half()
-        # tokenizer = AutoTokenizer.from_pretrained(
-        #     '/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct', trust_remote_code=True)
-
-        # tokenizer.half()
         if len(profile) > 0:
             messages = [
                 {"role": "system", "content": profile},

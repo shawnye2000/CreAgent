@@ -84,14 +84,8 @@ class Simulator:
 
         self.new_round_item = []
         self.tokenizer, self.model = None, None
-        self.embedding_size, self.embedding_model = utils.get_embedding_model()
+        self.embedding_size, self.embedding_model = utils.get_embedding_model(self.config['embedding_model_path'])
         self.leave_providers = []
-
-        # self.llm = vvLLM(model="/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct",
-        #                  tensor_parallel_size=2,
-        #                  # trust_remote_code=True,
-        #                  )
-        # self.tokenizer = AutoTokenizer.from_pretrained('/home/xiaopeng_ye/LLMs/Meta-Llama-3-8B-Instruct')
         if os.path.exists(self.config['profile_path']):
             with open(self.config['profile_path'], 'r') as f:
                 self.provider_profile_dict = json.load(f)
@@ -106,7 +100,6 @@ class Simulator:
     def load_simulator(self):
         """Load and initiate the simulator."""
         self.round_cnt = 0
-        # self.embedding_model = utils.get_embedding_model()
         self.data = Data(self.config)
         self.agents = self.agent_creation()
         self.provider_agents = self.provider_agent_creation()
@@ -1026,7 +1019,7 @@ class Simulator:
 
         agent_memory = MemoryClass(
             llm=LLM,
-            memory_retriever=self.create_new_memory_retriever(), #utils.get_embedding_model(),
+            memory_retriever=self.create_new_memory_retriever(),
             now=self.now,
             verbose=False,
             reflection_threshold=10,
@@ -1115,7 +1108,7 @@ if __name__ == '__main__':
     import wandb
     # intialize_the_simulator
     config = CfgNode(new_allowed=True)  # config/config.yaml
-    config.merge_from_file('/home/xiaopeng_ye/experiment/Agent4Fairness/LLaMA-Factory/src/llamafactory/config/config.yaml')
+    config.merge_from_file('config/config.yaml')
     #
     logger = utils.set_logger('simulation.log', '0630')
     logger.info(f"simulator config: \n{config}")
@@ -1144,19 +1137,10 @@ if __name__ == '__main__':
         genre_count = simulator.get_genre_item_count()
         wandb.log({
             "total_rewards": reward,
-            # "total_click": total_click,
-            # **genre_count,
-            # **ctr_feedbacks,
-            # **provider_click_dict
         }
         )
     with open(simulator.config['item_save_path'], 'w') as json_file:
         json.dump(simulator.data.items, json_file)
-        # if simulator.round_cnt == 1:
-        #     df = pd.DataFrame([provider_click_dict])
-        # else:
-        #     df = pd.concat([df, pd.DataFrame([provider_click_dict])], ignore_index=True)
-        # df.to_csv(f'/home/xiaopeng_ye/experiment/Agent4Fairness/figures/Bandwagon_effect/provider_dict.csv')
     wandb.finish()
 
 

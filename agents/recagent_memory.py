@@ -397,7 +397,7 @@ class LongTermMemory(BaseMemory):
     importance_weight: float = 0.15
     """How much weight to assign the memory importance."""
 
-    embeddings_model: HuggingFaceEmbeddings   # utils.get_embedding_model()
+    embeddings_model: HuggingFaceEmbeddings
     """The embeddings model"""
 
     def chain(self, prompt: PromptTemplate) -> LLMChain:
