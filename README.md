@@ -17,13 +17,22 @@ Then,  download the dataset from [google drive](https://drive.google.com/drive/f
 
 
 Third, please determine the setups of the simulation platform and modify the config file:`config/config.yaml`
-
 ```
 api_base: http://localhost:8000/v1
 api_key: EMPTY
 llm_model_name: your_llm_name 
-
 embedding_model_path: your_embedding_model
+```
+# Running
+Activate your conda environment
+```
+conda activate creagent
+```
+
+
+Load your vllm
+```
+python -m vllm.entrypoints.openai.api_server    --model your_llm_name   --trust-remote-code    --tensor-parallel-size 2    --api-key EMPTY    --port 8000  --enforce-eager --gpu-memory-utilization 0.9
 ```
 
 Then, you can run the simulator environment
