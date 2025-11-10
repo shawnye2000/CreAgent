@@ -36,9 +36,9 @@ python -m vllm.entrypoints.openai.api_server    --model your_llm_name   --trust-
 ```
 
 Then, you can run the simulator environment
-`
+```
 python simulator/simulator.py
-`
+```
 
 
 To change the configure setting, you can enter the `config/config.yaml` file and edit. 
