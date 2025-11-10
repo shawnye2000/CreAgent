@@ -8,8 +8,11 @@ proposed by the SIGIR 2025 paper "**LLM-Empowered Creator Simulation for Long-Te
 Clone the github repo and create the conda environment
 ```
 git clone https://github.com/shawnye2000/CreAgent.git
-cd CreAgent
+# Create conda environment
 conda create -n creagent python=3.10
+conda activate creagent
+# Install requirements
+cd CreAgent
 pip install -r requirements.txt
 ```
 
