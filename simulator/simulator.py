@@ -1058,7 +1058,7 @@ class Simulator:
         Create agents in parallel
         """
         agents = {}
-        api_keys = list(self.config["api_keys"])
+        api_key = self.config["api_key"]
         agent_num = int(self.config["agent_num"])
         # Add ONE user controllable user into the simulator if the flag is true.
         # We block the main thread when the user is creating the role.
@@ -1070,7 +1070,6 @@ class Simulator:
             active_probs = active_probs / active_probs.max()
 
         for i in tqdm(range(1, agent_num+1)):
-            api_key = api_keys[i % len(api_keys)]
             agent = self.create_agent(i, api_key)
             agent.active_prob = active_probs[agent.id-1]
             agents[agent.id] = agent
@@ -1083,7 +1082,7 @@ class Simulator:
         Create  provider  agents in parallel
         """
         agents = {}
-        api_keys = list(self.config["api_keys"])
+        api_key = self.config["api_key"]
         agent_num = int(self.config["provider_agent_num"])
         # Add ONE user controllable user into the simulator if the flag is true.
         # We block the main thread when the user is creating the role.
@@ -1095,7 +1094,6 @@ class Simulator:
         #     active_probs = active_probs / active_probs.max()
 
         for i in tqdm(range(1, agent_num+1)):
-            api_key = api_keys[i % len(api_keys)]
             agent = self.create_provider_agent(i, api_key)
             agents[agent.id] = agent
 

@@ -416,13 +416,9 @@ def get_entropy(inters, data):
 
 
 def get_embedding_model():
-    model_name = '/home/xiaopeng_ye/LLMs/all-mpnet-base-v2' #'/new_disk2/xiaopeng_ye/experiment/Agent4Fairness/qwen/Qwen2-7B-Instruct' #"sentence-transformers/all-mpnet-base-v2"
+    model_name = '/home/xiaopeng_ye/LLMs/all-mpnet-base-v2'
     model_kwargs = {'device': 'cpu'}
     embeddings_model = HuggingFaceEmbeddings(model_name=model_name, model_kwargs=model_kwargs)
-    # openai_api_key = "EMPTY"
-    # openai_api_base = "http://localhost:8000/v1"
-    # embeddings_model = OpenAIEmbeddings(openai_api_key=openai_api_key,
-    #                                     openai_api_base=openai_api_base)
     embeddings_size =  768 # 1536 #
     return embeddings_size, embeddings_model
 
