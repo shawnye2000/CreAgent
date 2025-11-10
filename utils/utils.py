@@ -349,7 +349,7 @@ def get_llm(config, logger, api_key):
             max_retries=config["max_retries"]
         )
     elif config["llm"] == "custom":
-        LLM = CustomLLM(max_token=2048, logger=logger)
+        LLM = CustomLLM(max_token=2048, logger=logger, config=config)
     else:
         raise ValueError(f"Invalid llm: {config['llm']}")
     return LLM

@@ -2,9 +2,9 @@
 llm: custom
 api_base: http://localhost:8000/v1
 api_key: EMPTY
-llm_model_name: xxx
+llm_model_name: /new_disk2/xiaopeng_ye/experiment/Agent4Fairness/Qwen2.5-7B-Instruct
 # embedding model path
-embedding_model_path: all-mpnet-base-v2
+embedding_model_path: /home/xiaopeng_ye/LLMs/all-mpnet-base-v2
 # path for item data
 item_save_path: saves/item_saved.json
 # path for user data

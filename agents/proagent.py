@@ -14,7 +14,6 @@ from langchain_experimental.generative_agents import (
 )
 from utils import utils
 from utils.event import Event
-from .recagent_memory import RecAgentMemory
 
 
 class ProAgent(GenerativeAgent):
@@ -114,8 +113,6 @@ class ProAgent(GenerativeAgent):
         self.item_round_exposure[round_cnt-1][item_id] += 1
 
         self.item_acc_exposure[item_id] += 1
-        # print(f'item acc expo:{self.item_acc_exposure}')
-        # print(f'item info:{self.items[item_id]}')
 
     def update_click(self, item_id, round_cnt):
 
@@ -124,12 +121,8 @@ class ProAgent(GenerativeAgent):
 
         self.item_round_click[round_cnt-1][item_id] += 1
         self.item_acc_click[item_id] += 1
-        # print(f'item acc click:{self.item_acc_click}')
 
     def update_round(self, round_cnt):
-
-        # print(f'--- this is a new round for provider')
-        # print(self.items)
         if len(self.item_round_click) < round_cnt:
             self.item_round_click.append({item: 0 for item in self.items.keys()})
         if len(self.item_round_exposure) < round_cnt:
@@ -182,7 +175,6 @@ class ProAgent(GenerativeAgent):
             agent_name=self.name,
             # agent_status='High' if self.status =='content' else 'Low',
             history_category=self.category_history,
-            # items=item_names,
         )
         result = self.chain(prompt=prompt).run(**kwargs).strip()
         # print(f'summary:{result}')
@@ -228,27 +220,6 @@ class ProAgent(GenerativeAgent):
         # print(f'most recent memory :{consumed_tokens}')
         result = self.chain(prompt=prompt).run(**kwargs).strip()
 
-        return result
-
-
-    def get_memories_until_limit(self, consumed_tokens: int) -> str:
-        """Reduce the number of tokens in the documents."""
-        retriever = (
-            self.memory.longTermMemory.memory_retriever
-            if type(self.memory) == RecAgentMemory
-            else self.memory.memory_retriever
-        )
-        result = []
-        for doc in retriever.memory_stream[::-1]:
-            if consumed_tokens >= self.max_dialogue_token_limit:
-                break
-            consumed_tokens += self.llm.get_num_tokens(doc.page_content)
-            if consumed_tokens < self.max_dialogue_token_limit:
-                result.append(doc)
-        if type(self.memory) == RecAgentMemory:
-            result = self.memory.longTermMemory.format_memories_simple(result)
-        else:
-            result = self.memory.format_memories_simple(result)
         return result
 
 
@@ -549,16 +520,6 @@ class ProAgent(GenerativeAgent):
             new_item_dict = {k: self.items[min_itemid][k] for k in feature_list}
             return new_item_dict
 
-        # if len(self.new_round_item) > 0:
-        #     for item_id in self.new_round_item[::-1]:
-        #         item_genre = self.items[item_id]['genre']
-        #         if item_genre == category:
-        #             new_item_dict = {k: self.items[item_id][k] for k in feature_list}
-        #             return new_item_dict
-        #         else:
-        #             continue
-
-
     def creating(self, now, conclusion, categories):
         history_items = self.items.values()
         if len(history_items) > 3:
@@ -578,15 +539,10 @@ class ProAgent(GenerativeAgent):
         observation = f"Item genre should be chosen from {categories}. Response should be in JSON dictionary format."
 
         result = self._generate_reaction(observation, suffix, now)
-        # dict_pattern = r"{.*}"
         import ast
-        # print(f'---{result} ---')
         start_index = result.find("{")
         end_index = result.find("}")
         dict_result = result[start_index: end_index+1]
-        # print(f'---{dict_result} ---')
-        # result = re.findall(dict_pattern, result)
-        # print(f'---222{result} ---')
         try:
             dict_result = ast.literal_eval(dict_result)
         except SyntaxError:
@@ -608,13 +564,6 @@ class ProAgent(GenerativeAgent):
         item_name = dict_result['name']
         item_genre = dict_result['genre']
         item_description = dict_result['description']
-        # self.memory.save_context(
-        #     {},
-        #     {
-        #         self.memory.add_memory_key: f"{self.name} create content: {result}",
-        #         self.memory.now_key: now,
-        #     },
-        # )
 
 
         return item_name, item_genre, item_description
@@ -642,19 +591,6 @@ class ProAgent(GenerativeAgent):
         prompt = (f"Observation: {observation}"
                  f"\n {call_to_action_template}")
         full_result = self.llm(prompt, profile=profile)
-        # print(f'full result:{full_result}')
-        # result = full_result.strip().split("\n")[0]
-
-        # choice = full_result.split("::")[0]
-        # action = result.split("::")[1]
-
-        # self.memory.save_context(
-        #     {},
-        #     {
-        #         self.memory.add_memory_key: f"{self.name} take action: " f"{full_result}",
-        #         self.memory.now_key: now,
-        #     },
-        # )
         q_r_pair = [prompt, full_result]
         return q_r_pair
 
