@@ -1,7 +1,7 @@
 # CreAgent and Simulation platform 
 
 This repo contains the codes of the simulation platform equipped with CreAgent, which is used for long-term recommender system evaluation.
-proposed by the SIGIR 2025 paper "LLM-Empowered Creator Simulation for Long-Term Evaluation of Recommender Systems Under Information Asymmetry"
+proposed by the SIGIR 2025 paper "**LLM-Empowered Creator Simulation for Long-Term Evaluation of Recommender Systems Under Information Asymmetry**"
 
 
 # Environment 
@@ -23,7 +23,7 @@ cd config/config.yaml
 Then, you can run the simulator environment
 
 `
-python simulator.py
+python simulator/simulator.py
 `
 
 
