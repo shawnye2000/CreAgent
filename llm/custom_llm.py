@@ -79,7 +79,7 @@ class CustomLLM(LLM):
         )
 
         chat_response = client.chat.completions.create(
-            model=self.config['model_name'],
+            model=self.config['llm_model_name'],
             messages=messages
         )
         chat_response = chat_response.choices[0].message.content

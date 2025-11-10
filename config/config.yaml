@@ -2,7 +2,9 @@
 llm: custom
 api_base: http://localhost:8000/v1
 api_key: EMPTY
-model_name: xxx
+llm_model_name: xxx
+# embedding model path
+embedding_model_path: all-mpnet-base-v2
 # path for item data
 item_save_path: saves/item_saved.json
 # path for user data
@@ -19,8 +21,7 @@ index_name: data/data/faiss_index
 # simulator directory name for saving and restoring
 simulator_dir: data/data/simulator
 
-# embedding model path
-embedding_model_path: all-mpnet-base-v2
+
 # random seed
 seed: 2024  #  1. 1  2. 2024
 # recommender system model
